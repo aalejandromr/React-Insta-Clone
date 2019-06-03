@@ -14,11 +14,19 @@ class CommentForm extends React.Component {
     })
   }
 
+  handleCommentSubmission = (e, postKey) => {
+    e.preventDefault();
+    this.props.handleAddition(e, this.state.comment, postKey)
+    this.setState({
+      comment: ""
+    })
+  }
+
   render () {
     return(
       <div className="more-comments-container">
-        <form onSubmit={(e) => this.props.handleAddition(e, this.state.comment, this.props.postKey)}>
-          <input type="text" onChange={this.handleOnChange}/>
+        <form onSubmit={(e) => this.handleCommentSubmission(e, this.props.postKey)}>
+          <input type="text" onChange={this.handleOnChange} value={this.state.comment}/>
           <input type="submit"/>
         </form>
       </div>

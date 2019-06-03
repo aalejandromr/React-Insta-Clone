@@ -14,10 +14,10 @@ class App extends React.Component {
     this.state = {
       posts: dummyData
     }
-    this.handleSubmitComment = this.handleSubmitComment.bind(this);
+    // this.handleSubmitComment = this.handleSubmitComment.bind(this);
   }
 
-  handleSubmitComment(e, newComment, postKey) {
+  handleSubmitComment = (e, newComment, postKey) => {
     this.setState(prevState => {
       return {
         posts: prevState.posts.map((post, key) => {
