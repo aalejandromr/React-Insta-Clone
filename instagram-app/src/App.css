@@ -31,3 +31,40 @@
     transform: rotate(360deg);
   }
 }
+
+/* more */
+
+.post-wrapper {
+  padding: 0% 20%;
+}
+
+.post-wrapper, .post-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container, .action-container {
+  display: flex;
+}
+
+.action-container {
+  /* flex-direction: column; */
+}
+
+.header-container {
+  align-items: center;
+}
+
+.header-container img {
+  max-width: 60px;
+  border-radius: 50%;
+}
+
+.img-container img {
+  width: 100%;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+}
