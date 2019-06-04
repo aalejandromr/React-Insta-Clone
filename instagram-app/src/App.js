@@ -17,8 +17,8 @@ class App extends React.Component {
   {
     super(props);
     this.state = {
-      posts: [],
-      filtered: [],
+      posts: dummyData,
+      filtered: dummyData,
       search: ""
     }
     // this.handleSubmitComment = this.handleSubmitComment.bind(this);
@@ -26,9 +26,36 @@ class App extends React.Component {
 
   componentDidMount()
   {
-    this.setState({
-      posts: dummyData,
-      filtered: dummyData
+    // // for all items in state
+    // for (let key in this.state) {
+    //   // if the key exists in localStorage
+    //   if (localStorage.hasOwnProperty(key)) {
+    //     // get the key's value from localStorage
+    //     let value = localStorage.getItem(key);
+
+    //     // parse the localStorage string and setState
+    //       value = JSON.parse(value);
+    //       this.setState({ [key]: value });
+    //   }
+    // }
+    if(localStorage.length > 0) {
+      this.setState({
+        filtered: JSON.parse(localStorage.posts),
+        posts: JSON.parse(localStorage.posts)
+      })
+    }
+    // this.setState({
+    //   filtered: dummyData,
+    //   posts: dummyData
+    // })
+    // add event listener to save state to localStorage
+    // when user leaves/refreshes the page
+    // window.addEventListener("")
+    window.addEventListener('beforeunload', () => {
+      for (let key in this.state) {
+        // save to localStorage
+        localStorage.setItem(key, JSON.stringify(this.state[key]));
+      }
     })
   }
 
@@ -36,6 +63,12 @@ class App extends React.Component {
     this.setState(prevState => {
       return {
         posts: prevState.posts.map((post, key) => {
+          if(key === postKey) {
+            post.comments.push({username: "aalejandromr", text: newComment})
+          }
+          return post;
+        }),
+        filtered: prevState.filtered.map((post, key) => {
           if(key === postKey) {
             post.comments.push({username: "aalejandromr", text: newComment})
           }
@@ -51,6 +84,12 @@ class App extends React.Component {
     this.setState(prevState => {
       return {
         posts: prevState.posts.map((post, key) => {
+          if(key === postKey) {
+            post.likes++
+          }
+          return post;
+        }),
+        filtered: prevState.filtered.map((post, key) => {
           if(key === postKey) {
             post.likes++
           }
