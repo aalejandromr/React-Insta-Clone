@@ -17,9 +17,16 @@ class App extends React.Component {
   {
     super(props);
     this.state = {
-      posts: dummyData
+      posts: []
     }
     // this.handleSubmitComment = this.handleSubmitComment.bind(this);
+  }
+
+  componentDidMount()
+  {
+    this.setState({
+      posts: dummyData
+    })
   }
 
   handleSubmitComment = (e, newComment, postKey) => {
@@ -37,6 +44,20 @@ class App extends React.Component {
     // console.log(postKey);
   }
 
+  handleLikes = (postKey) => {
+    this.setState(prevState => {
+      return {
+        posts: prevState.posts.map((post, key) => {
+          if(key === postKey) {
+            post.likes++
+          }
+          return post;
+        })
+      }
+    })
+    // console.log(postKey);
+  }
+
   render (){
     return (
       <div className="App">
@@ -47,7 +68,7 @@ class App extends React.Component {
           { this.state.posts.map( (post, key) => {
             return (
               <section className="post-wrapper" key={key}>
-                  <PostContainer post={post} />
+                  <PostContainer post={post} handleLikes={() => this.handleLikes(key)}/>
                   <CommentForm handleAddition={this.handleSubmitComment} postKey={key}/>
               </section>
               )

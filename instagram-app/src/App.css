@@ -206,3 +206,9 @@ svg {
 .comment-container figure p {
   margin: 8px 0;
 }
+
+.post-time {
+  margin-left: 25.094px;
+  text-align: left;
+  color: grey
+}

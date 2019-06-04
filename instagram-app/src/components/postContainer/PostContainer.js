@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CommentSection from '../commentSection/CommentSection';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 
 const PostContainer = (props) => {
   return (
@@ -21,7 +22,7 @@ const PostContainer = (props) => {
       </div>
       <div className="action-container">
         <figure>
-          <FontAwesomeIcon icon={['far', 'heart']} size={"2x"}/>
+          <FontAwesomeIcon icon={['far', 'heart']} size={"2x"} onClick={props.handleLikes}/>
           <FontAwesomeIcon icon={['far', 'comment']} size={"2x"}/>
         </figure>
       </div>
@@ -29,6 +30,7 @@ const PostContainer = (props) => {
         <strong> {props.post.likes} likes </strong>
       </div>
       <CommentSection comments={props.post.comments}/>
+      <p className="post-time"> <Moment fromNow>{new Date(props.post.timestamp.replace(/th|rd/, ""))}</Moment> </p>
     </div>
   )
 }
