@@ -5,8 +5,8 @@ const CommentSection = (props) => {
     <div className="comment-container">
         { props.comments.map((comment, key) => {
           return (
-            <figure className="comment-wrapper">
-              <p key={key}> <strong> {comment.username} </strong> {comment.text} </p>
+            <figure className="comment-wrapper" key={key}>
+              <p > <strong> {comment.username} </strong> {comment.text} </p>
             </figure>
           )
         }) }

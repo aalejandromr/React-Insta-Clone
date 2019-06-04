@@ -7,10 +7,11 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import PostContainer from './components/postContainer/PostContainer';
 import CommentForm from './components/CommentForm/CommentForm';
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SearchBar from './components/searchBar/SearchBar'
 
-library.add(faComment, faHeart, faInstagram, faCompass, faUser)
+library.add(faComment, faHeart, faInstagram, faCompass, faUser, faSearch)
 class App extends React.Component {
   constructor(props)
   {
@@ -40,23 +41,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>
-          <nav className="main-navbar">
-            <div className="left-side">
-                <FontAwesomeIcon icon={['fab', 'instagram']} size="3x"/>
-                <span> | </span>
-                <h1> 
-                  Instagram
-                </h1>
-            </div>
-            <div className="center-side">
-              <input type="text" placeholder="Look here"/>
-            </div>
-            <div className="right-side">
-                <FontAwesomeIcon icon={['far', 'compass']} size="2x"/>
-                <FontAwesomeIcon icon={['far', 'heart']} size="2x"/>
-                <FontAwesomeIcon icon={['far', 'user']} size="2x"/>
-            </div>
-          </nav>
+          <SearchBar/>
         </header>
         <section className="main-body">
           { this.state.posts.map( (post, key) => {
