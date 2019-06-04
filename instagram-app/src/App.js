@@ -17,7 +17,9 @@ class App extends React.Component {
   {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      filtered: [],
+      search: ""
     }
     // this.handleSubmitComment = this.handleSubmitComment.bind(this);
   }
@@ -25,7 +27,8 @@ class App extends React.Component {
   componentDidMount()
   {
     this.setState({
-      posts: dummyData
+      posts: dummyData,
+      filtered: dummyData
     })
   }
 
@@ -58,14 +61,27 @@ class App extends React.Component {
     // console.log(postKey);
   }
 
+  handleSearch = (e) => {
+    const search = new RegExp(e.target.value, "i");
+    this.setState(prevState => {
+      return {
+        filtered: prevState.posts.filter(post => {
+          return search.test(post.username)
+        })
+      }
+    })
+      // console.log(this.state.posts.map(post => post.username))
+    // console.log(this.state.search)
+  }
+
   render (){
     return (
       <div className="App">
         <header>
-          <SearchBar/>
+          <SearchBar handleSearch={this.handleSearch} search={this.state.search}/>
         </header>
         <section className="main-body">
-          { this.state.posts.map( (post, key) => {
+          { this.state.filtered.map( (post, key) => {
             return (
               <section className="post-wrapper" key={key}>
                   <PostContainer post={post} handleLikes={() => this.handleLikes(key)}/>

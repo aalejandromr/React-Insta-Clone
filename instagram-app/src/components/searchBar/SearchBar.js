@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   return (
     <nav className="main-navbar">
       <div className="left-side">
@@ -13,7 +13,7 @@ const SearchBar = () => {
       </div>
       <div className="center-side">
         <FontAwesomeIcon icon={['fas', 'search']} size="1x"/>
-        <input type="text" placeholder="Search"/>
+        <input type="text" placeholder="Search" onChange={props.handleSearch}/>
       </div>
       <div className="right-side">
           <FontAwesomeIcon icon={['far', 'compass']} size="2x"/>
