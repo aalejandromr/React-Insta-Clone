@@ -147,3 +147,7 @@ svg {
 .display-none {
   display: none;
 }
+
+.main-body {
+  background: #FAFAFA;
+}

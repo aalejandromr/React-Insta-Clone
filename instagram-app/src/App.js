@@ -58,6 +58,7 @@ class App extends React.Component {
             </div>
           </nav>
         </header>
+        <section className="main-body">
           { this.state.posts.map( (post, key) => {
             return (
               <section className="post-wrapper" key={key}>
@@ -67,6 +68,7 @@ class App extends React.Component {
               )
             }
           )}
+        </section>
       </div>
     );
   }
