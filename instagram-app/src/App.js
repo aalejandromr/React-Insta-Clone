@@ -2,11 +2,15 @@ import React from 'react';
 import './App.css';
 import dummyData from './dummy-data.js';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faComment, faHeart} from '@fortawesome/free-regular-svg-icons'
+import {
+  faComment, faHeart, faCompass, faUser
+} from '@fortawesome/free-regular-svg-icons'
 import PostContainer from './components/postContainer/PostContainer';
 import CommentForm from './components/CommentForm/CommentForm';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-library.add(faComment, faHeart)
+library.add(faComment, faHeart, faInstagram, faCompass, faUser)
 class App extends React.Component {
   constructor(props)
   {
@@ -26,7 +30,6 @@ class App extends React.Component {
           }
           return post;
         })
-          // prevState.posts.map()
       }
     })
     e.preventDefault();
@@ -37,7 +40,23 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>
-          
+          <nav className="main-navbar">
+            <div className="left-side">
+                <FontAwesomeIcon icon={['fab', 'instagram']} size="3x"/>
+                <span> | </span>
+                <h1> 
+                  Instagram
+                </h1>
+            </div>
+            <div className="center-side">
+              <input type="text" placeholder="Look here"/>
+            </div>
+            <div className="right-side">
+                <FontAwesomeIcon icon={['far', 'compass']} size="2x"/>
+                <FontAwesomeIcon icon={['far', 'heart']} size="2x"/>
+                <FontAwesomeIcon icon={['far', 'user']} size="2x"/>
+            </div>
+          </nav>
         </header>
           { this.state.posts.map( (post, key) => {
             return (

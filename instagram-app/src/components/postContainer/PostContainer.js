@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CommentSection from '../commentSection/CommentSection';
+import PropTypes from 'prop-types';
 
 const PostContainer = (props) => {
   return (
@@ -28,6 +29,17 @@ const PostContainer = (props) => {
       <CommentSection comments={props.post.comments}/>
     </div>
   )
+}
+
+PostContainer.propTypes = {
+  post: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    thumbnailUrl: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    timestamp: PropTypes.string.isRequired,
+    comments: PropTypes.array
+  })
 }
 
 export default PostContainer;

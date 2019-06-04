@@ -68,3 +68,15 @@
   display: flex;
   flex-direction: column;
 }
+
+.main-navbar {
+  display: flex ;
+  /* flex-wrap: nowrap; */
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.main-navbar .left-side, .right-side, .center-side {
+  display: flex;
+  align-items: center;
+}
