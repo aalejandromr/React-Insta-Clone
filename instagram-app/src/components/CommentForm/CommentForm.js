@@ -26,8 +26,13 @@ class CommentForm extends React.Component {
     return(
       <div className="more-comments-container">
         <form onSubmit={(e) => this.handleCommentSubmission(e, this.props.postKey)}>
-          <input type="text" onChange={this.handleOnChange} value={this.state.comment}/>
-          <input type="submit"/>
+          <input
+            type="text"
+            onChange={this.handleOnChange} 
+            value={this.state.comment}
+            placeholder="Add a comment..."
+          />
+          <input type="submit" className="display-none"/>
         </form>
       </div>
     )

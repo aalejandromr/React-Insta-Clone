@@ -11,7 +11,7 @@ const PostContainer = (props) => {
           <img alt="" src={props.post.thumbnailUrl}></img>
         </figure>
         <div className="username">
-          {props.post.username}
+          <strong> {props.post.username} </strong>
         </div>
       </div>
       <div className="img-container">
@@ -20,11 +20,13 @@ const PostContainer = (props) => {
         </figure>
       </div>
       <div className="action-container">
-        <FontAwesomeIcon icon={['far', 'heart']}/>
-        <FontAwesomeIcon icon={['far', 'comment']}/>
+        <figure>
+          <FontAwesomeIcon icon={['far', 'heart']} size={"2x"}/>
+          <FontAwesomeIcon icon={['far', 'comment']} size={"2x"}/>
+        </figure>
       </div>
       <div className="likes-container">
-        <p> {props.post.likes} likes </p>
+        <strong> {props.post.likes} likes </strong>
       </div>
       <CommentSection comments={props.post.comments}/>
     </div>

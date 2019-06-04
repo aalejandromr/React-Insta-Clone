@@ -76,7 +76,66 @@
   list-style-type: none;
 }
 
-.main-navbar .left-side, .right-side, .center-side {
+.main-navbar .left-side, .main-navbar .right-side, .main-navbar .center-side {
   display: flex;
   align-items: center;
+}
+
+.main-navbar .left-side > *, .main-navbar .right-side > * {
+  margin: 5%;
+  box-sizing: border-box;
+}
+
+.main-navbar .center-side {
+  width: 25%;
+}
+
+input {
+  width: 100%;
+  height: 30%;
+  border-right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+.action-container figure {
+  width: 100%;
+  display: flex;
+}
+
+.action-container figure > svg {
+  margin: 0% 3%;
+  box-sizing: border-box;
+}
+
+.comment-container figure p {
+  text-align: left
+}
+
+.comment-wrapper {
+  margin-bottom: 0;
+}
+
+.likes-container {
+  margin: 0px 40px;
+}
+
+.likes-container {
+  text-align: left;
+}
+
+svg {
+  padding: 0.5%;
+  box-sizing: border-box;
+}
+
+.comment-container, .likes-container, .more-comments-container {
+  padding: 0% 3%;
+}
+
+.more-comments-container {
+  margin: 0px 40px;
+}
+.display-none {
+  display: none;
 }
