@@ -11,7 +11,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import SearchBar from './components/searchBar/SearchBar'
 
-library.add(faComment, faHeart, faInstagram, faCompass, faUser, faSearch)
+library.add(faComment, faHeart, faInstagram, faCompass, faUser, faSearch);
+
 class App extends React.Component {
   constructor(props)
   {
@@ -21,36 +22,16 @@ class App extends React.Component {
       filtered: dummyData,
       search: ""
     }
-    // this.handleSubmitComment = this.handleSubmitComment.bind(this);
   }
 
   componentDidMount()
   {
-    // // for all items in state
-    // for (let key in this.state) {
-    //   // if the key exists in localStorage
-    //   if (localStorage.hasOwnProperty(key)) {
-    //     // get the key's value from localStorage
-    //     let value = localStorage.getItem(key);
-
-    //     // parse the localStorage string and setState
-    //       value = JSON.parse(value);
-    //       this.setState({ [key]: value });
-    //   }
-    // }
     if(localStorage.length > 0) {
       this.setState({
         filtered: JSON.parse(localStorage.posts),
         posts: JSON.parse(localStorage.posts)
       })
     }
-    // this.setState({
-    //   filtered: dummyData,
-    //   posts: dummyData
-    // })
-    // add event listener to save state to localStorage
-    // when user leaves/refreshes the page
-    // window.addEventListener("")
     window.addEventListener('beforeunload', () => {
       for (let key in this.state) {
         // save to localStorage
@@ -67,17 +48,10 @@ class App extends React.Component {
             post.comments.push({username: "aalejandromr", text: newComment})
           }
           return post;
-        }),
-        filtered: prevState.filtered.map((post, key) => {
-          if(key === postKey) {
-            post.comments.push({username: "aalejandromr", text: newComment})
-          }
-          return post;
         })
       }
     })
     e.preventDefault();
-    // console.log(postKey);
   }
 
   handleLikes = (postKey) => {
@@ -88,29 +62,15 @@ class App extends React.Component {
             post.likes++
           }
           return post;
-        }),
-        filtered: prevState.filtered.map((post, key) => {
-          if(key === postKey) {
-            post.likes++
-          }
-          return post;
         })
       }
     })
-    // console.log(postKey);
   }
 
   handleSearch = (e) => {
-    const search = new RegExp(e.target.value, "i");
-    this.setState(prevState => {
-      return {
-        filtered: prevState.posts.filter(post => {
-          return search.test(post.username)
-        })
-      }
+    this.setState({
+      search: e.target.value
     })
-      // console.log(this.state.posts.map(post => post.username))
-    // console.log(this.state.search)
   }
 
   render (){
@@ -120,15 +80,18 @@ class App extends React.Component {
           <SearchBar handleSearch={this.handleSearch} search={this.state.search}/>
         </header>
         <section className="main-body">
-          { this.state.filtered.map( (post, key) => {
-            return (
-              <section className="post-wrapper" key={key}>
-                  <PostContainer post={post} handleLikes={() => this.handleLikes(key)}/>
-                  <CommentForm handleAddition={this.handleSubmitComment} postKey={key}/>
-              </section>
-              )
-            }
-          )}
+          {
+            this.state.posts.map((post, key) => {
+              if(RegExp(this.state.search,"i").test(post.username)){
+                return (
+                  <section className="post-wrapper" key={key}>
+                      <PostContainer post={post} handleLikes={() => this.handleLikes(key)}/>
+                      <CommentForm handleAddition={this.handleSubmitComment} postKey={key}/>
+                  </section>
+                  )
+              }
+            })
+          }
         </section>
       </div>
     );
