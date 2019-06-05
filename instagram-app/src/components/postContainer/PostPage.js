@@ -12,7 +12,7 @@ import SearchBar from '../searchBar/SearchBar'
 
 library.add(faComment, faHeart, faInstagram, faCompass, faUser, faSearch);
 
-export class PostPage extends React.Component {
+export default class PostPage extends React.Component {
   constructor(props)
   {
     super(props);
@@ -44,7 +44,7 @@ export class PostPage extends React.Component {
       return {
         posts: prevState.posts.map((post, key) => {
           if(key === postKey) {
-            post.comments.push({username: "aalejandromr", text: newComment})
+            post.comments.push({username: localStorage.getItem("user"), text: newComment})
           }
           return post;
         })

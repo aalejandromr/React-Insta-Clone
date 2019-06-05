@@ -18,7 +18,10 @@ const SearchBar = (props) => {
       <div className="right-side">
           <FontAwesomeIcon icon={['far', 'compass']} size="2x"/>
           <FontAwesomeIcon icon={['far', 'heart']} size="2x"/>
-          <FontAwesomeIcon icon={['far', 'user']} size="2x"/>
+          <FontAwesomeIcon icon={['far', 'user']} size="2x" onClick={() => {
+            localStorage.removeItem("isLoggedIn");
+            window.location.reload();
+            }}/>
       </div>
     </nav>
   )
