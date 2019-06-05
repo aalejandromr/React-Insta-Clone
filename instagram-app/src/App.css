@@ -58,10 +58,6 @@
   display: flex;
 }
 
-.action-container {
-  /* flex-direction: column; */
-}
-
 .header-container {
   align-items: center;
 }
